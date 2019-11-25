@@ -140,7 +140,7 @@ function Player(
   playerName = 'Player 1',
   startingMoney = 5.0,
   startingTime = 180,
-  startingHealth = 100
+  startingHealth = 85
 ) {
   this.name = playerName;
   this.money = startingMoney;
@@ -165,6 +165,7 @@ Player.prototype.changeHealth = function (delta) {
   if(player.health <= 0) {
     gameOver('You have died');
   }
+  drawHealthBar(healthBar, 10, 10, 200, 30, player.health, 100);
 };
 // function to roll 20 sided dice
 function rollD20() {
@@ -322,19 +323,11 @@ var takeBus = function () {
 var takeCar = function () {
   var roll = rollD20();
   if (roll >= 17) {
-    displayText('You drive your car to Tacoma and make great time! It took onlly 10 minutes');
+    displayText('You drive your car to Tacoma and make great time! It took only 10 minutes');
     player.changeTime(-10);
-
-    
-    // nextLevel();
-    
-
   } else if (roll >= 7) {
     displayText('You ride your car to Tacoma, but there was some traffic. Minus 20 minutes');
     player.changeTime(-20);
-    
-    // nextLevel();
-    changeLevel(tacoma, takeBusTacoma,takeTrainTacoma, rideWithStranger);
   } else {
     displayText('Your car wouldn\'t start. You had to take the bus to Tacoma. Minus 45 minutes and 5$');
     player.changeTime(-45);
