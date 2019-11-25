@@ -436,9 +436,8 @@ var CarpoolSeaTac = function () {
 };
 
 
-// *************************************End of Federal Way Logic
+// *************************************End of SeaTac*****************************
 
-////////////////--------------------------------------------------------
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
