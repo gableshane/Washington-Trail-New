@@ -87,9 +87,9 @@ var federalWay = [
 
 var seaTac = [
   'SeaTac',
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
+  'assets/Level Images/carpool.jpg',
+  'assets/Level Images/Bus.jpg',
+  'assets/Level Images/Train.jpg',
   'assets/Maps/location3.png'
 ];
 var seattle = [
@@ -138,9 +138,9 @@ var player = new Player(JSON.parse(localStorageUserName));
 // Player constructor function
 function Player(
   playerName = 'Player 1',
-  startingMoney = 5.0,
+  startingMoney = 45,
   startingTime = 180,
-  startingHealth = 100
+  startingHealth = 100,
 ) {
   this.name = playerName;
   this.money = startingMoney;
@@ -179,11 +179,12 @@ function rollD20() {
 var snooze = function() {
   var roll = rollD20();
   if (roll >= 18) {
-    player.changeHealth(30);
+    player.changeHealth(+15);
     player.changeTime(-15);
     displayText('You got an extra 15 minutes of sleep and feel amazing! Pick again.');
+    console.log(player.health);
   } else if (roll >= 2) {
-    player.changeHealth(15);
+    player.changeHealth(+15);
     player.changeTime(-15);
     displayText('You got some extra sleep! Feeling good plus 15 health. Pick again!');
   } else {
@@ -195,107 +196,6 @@ var snooze = function() {
   }
 };
 
-var talkToStranger = function () {
-  var roll = rollD20();
-  if (roll == 20) {
-    var answer = prompt(
-      'The stranger has offered you a ride. Do you accept? Yes/No'
-    );
-    strangeJourney(answer);
-  } else if (roll >= 2) {
-    displayText(
-      'The stranger rambles on and on about UFOs until you slowly back away.'
-    );
-    player.changeTime(-10);
-  } else {
-    displayText('The stranger stabs you.');
-    player.changeHealth(-50);
-    player.changeTime(-5);
-  }
-};
-var strangeJourney = function (answer) {
-  var roll = rollD20();
-  if (answer.toUpperCase() === 'YES') {
-    if (roll == 20) {
-      displayText('The stranger gives you a ride straight to work! You win!');
-      // endGame('win');
-    } else if (roll >= 10) {
-      displayText('The stranger gives you a ride to BLANK.');
-      player.changeTime(-5);
-      // nextLevel();
-    } else {
-      displayText('You are never seen again');
-      player.health = 0;
-      // endGame('lose');
-    }
-  } else if (answer.toUpperCase() === 'NO') {
-    if (roll == 20) {
-      displayText('The stranger gives you some money instead!');
-      player.changeMoney(10);
-      player.changeTime(-5);
-    } else if (roll >= 2) {
-      displayText('The stranger goes on his way.');
-      player.changeTime(-5);
-    } else {
-      displayText('The stranger is offended and stabs you.');
-      player.changeHealth(-50);
-      player.changeTime(-5);
-    }
-  } else {
-    displayText('Invalid answer');
-    player.changeTime(-1);
-    strangeJourney(prompt('Try again'));
-  }
-};
-var searchSeatCustion = function () {
-  var roll = rollD20();
-  if (roll == 20) {
-    var answer = prompt(
-      'You have found a strange looking mushroom. Eat the mushroom? Yes/No'
-    );
-    if (answer.toUpperCase() === 'YES') {
-      eatMushroom();
-    } else if (answer.toUpperCase() === 'NO') {
-      displayText('You are overcome with a desire to eat the mushroom.');
-      eatMushroom();
-    } else {
-      displayText(
-        'While you were failing to enter a valid input, you accidentally ate the mushroom.'
-      );
-      eatMushroom();
-    }
-  } else if (roll >= 10) {
-    displayText('You found a dollar!');
-    player.changeMoney(1);
-  } else if (roll >= 2) {
-    displayText('You found 35 cents.');
-    player.changeMoney(0.35);
-  } else {
-    displayText('You accidentally stab yourself on a used needle.');
-    player.changeHealth(-25);
-  }
-};
-// HELPER FUNCTION, DOESNT NEED TO BE LOADED TO LEVEL
-function eatMushroom() {
-  var roll = rollD20();
-  displayText('Hmmm... This mushroom tastes kinda funny.');
-  if (roll == 20) {
-    displayText(
-      'You have ascended to another realm of consciousness. Where were you going anyways? It doesn\'t matter.'
-    );
-    // endGame('win');
-  } else if (roll >= 10) {
-    displayText('You feel refreshed');
-    player.changeHealth(roll);
-  } else if (roll >= 2) {
-    displayText('Ughh... That mushroom made you feel sick.');
-    player.changeHealth(roll * -1);
-  } else {
-    displayText('You have died.');
-    player.health = 0;
-    // endGame();
-  }
-}
 var takeBus = function () {
 
   var roll = rollD20();
@@ -414,63 +314,7 @@ changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
 
 
 // ********************************** FederalWay Logic Start*****************************
-//Bus Option
 
-var takeBusFedWay = function () {
-  var roll = rollD20();
-  if (roll > 17) {
-    displayText('Bus ran through some stoplights and you made it there quick!');
-    player.changeTime(-10);
-    player.changeMoney(-5);
-  } else if (roll >= 7) {
-    displayText('Bus driver is newer and goes slow figuring out his route');
-    player.changeTime(-20);
-    player.changeMoney(-5);
-  } else {
-    displayText('Bus tire is flat you had to wait for next one, big loss of time and frustraion');
-    player.changeTime(-45);
-    player.changeHealth(-10);
-    player.changeMoney(-10);
-  }
-};
-
-//Train Option
-var takeTrainFedWay = function () {
-  var roll = rollD20();
-  if (roll > 15) {
-    displayText('Train is running smoothly this morning, you practically flew to your next stop!');
-    player.changeTime(-5);
-    player.changeMoney(-15);
-  } else if (roll >= 5) {
-    displayText('The train is a little behind, but not much');
-    player.changeTime(-10);
-    player.changeMoney(-15);
-  } else {
-    displayText('The train breaks down, you have to wait for another one to arrive. You also get charged for two train tickets');
-    player.changeTime(-45);
-    player.changeHealth(-10);
-    player.changeMoney(-30);
-  }
-};
-
-//Moped with stranger option 
-var rideMoped = function () {
-  var roll = rollD20();
-  if (roll > 17) {
-    displayText('The risk payed off the moped ended up weaving in and out of traffic to save you time, but they charged you 15$');
-    player.changeTime(-5);
-    player.changeMoney(-15);
-  } else if (roll >= 5) {
-    displayText('The moped ride was weird, but it made it in average time. The driver charged you 15$');
-    player.changeTime(-10);
-    player.changeMoney(-15);
-  } else {
-    displayText('The moped was a horrible idea, it almost immediately crashed into the stoplight. You still got charged 15$');
-    player.changeTime(-45);
-    player.changeHealth(-50);
-    player.changeMoney(-15);
-  }
-};
 
   var takeBusFedWay = function() {
      var roll = rollD20();
@@ -629,26 +473,6 @@ function gameOver(outcome) {
 
 
 }
-// ACTION FUNCTION TEMPLATE
-// var functionName = function() {
-//   var roll = rollD20();
-//   if (roll > number) {
-//     displayText('INSERT TEXT HERE');
-//     player.changeTime(amount);
-//     player.changeHealth(amount);
-//     player.changeMoney(amount);
-//   } else if (roll >= number2) {
-//     displayText('INSERT TEXT HERE');
-//     player.changeTime(amount);
-//     player.changeHealth(amount);
-//     player.changeMoney(amount);
-//   } else {
-//     displayText('INSERT TEXT HERE');
-//     player.changeTime(amount);
-//     player.changeHealth(amount);
-//     player.changeMoney(amount);
-//   }
-// };
 
 changeLevel(home, takeBus, takeCar, snooze);
 var playerInfo = document.createElement('span');
