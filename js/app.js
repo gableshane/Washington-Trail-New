@@ -94,7 +94,7 @@ var seaTac = [
 ];
 var seattle = [
   'Seattle',
-  'https://via.placeholder.com/150',
+  'assets/Level Images/seattle.jpg',
   'https://via.placeholder.com/150',
   'https://via.placeholder.com/150',
   'assets/Maps/End.png'
