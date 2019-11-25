@@ -23,8 +23,6 @@ function clickHandler(event) {
   }
 }
 
-choicePanel.addEventListener('click', clickHandler);
-
 
 // USERNAME
 //
@@ -37,9 +35,7 @@ function getName() {
 }
 // Get user name from local storage and set player name
 var localStorageUserName = localStorage.getItem("userName");
-
-//var player = JSON.parse(localStorageUserName); COMMENTED OUT FOR TESTIJNG
-
+var player = new Player(JSON.parse(localStorageUserName));
 // Starting player attributes should be determined by level, default levels set in player constructor function.
 var startingMoney;
 var startingTime;
