@@ -194,4 +194,12 @@ alert {
   background-color: #f44336;
   color: white;
 }
-
+#player-data p {
+  position: relative;
+  margin-right: 40px;
+  margin-top: 10px;
+}
+#show-me-the-money {
+  position: relative;
+  left: 80px;
+}
