@@ -1,0 +1,197 @@
+* {
+  box-sizing: border-box;
+  }
+
+body {
+  background-color: black;
+}
+
+header {
+  text-align: center;
+  margin: 0 auto;
+  width: 2000px;
+}
+
+header img {
+  width: 186px;
+  height: 115px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+header span {
+  position: relative;
+  bottom: 25px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 30px;
+  color: #FFB000;
+  text-shadow: 2px 2px #FF0000;
+}
+
+main {
+  text-align: center;
+}
+
+hr {
+  border: 1px dashed #33FF33;
+  margin: 10px 0 10px 0;
+  padding: 1px 0 1px 0;
+}
+
+#tvBox {
+  margin: 0 auto;
+  height: 1200px;
+  width: 2000px;
+  background-color: #654321;
+  border: 10px solid rgb(49, 16, 16);
+  border-radius: 5%;
+  z-index: -1;
+}
+
+#grayScreen {
+  margin: 0 auto;
+  margin-top: 10px;
+  height: 1100px;
+  width: 1900px;
+  background-color: #3C393C;
+  border: 5px solid black;
+  border-radius: 20%;
+  font-family: 'Press Start 2P', cursive;
+  color: #33FF33;
+  text-align: center;
+}
+
+#screenContent {
+  margin-top: 50px;
+}
+
+#screenContent h3 {
+  font-size: 26px;
+}
+
+#screenContent hr {
+  margin: 10px 15% 10px 15%;
+}
+
+#screenContent p.headerInOrange {
+  color: #FFB000;
+  font-size: 26px;
+  margin-top: 30px;
+}
+
+#screenContent p.gameContextInGreen {
+  margin: 75px 5% 75px 5%;
+  transform: scale(1, 2.5);
+  text-align: justify;
+  font-size: 16px;
+}
+
+#tvFooterCompanyInfo {
+  margin-top: 40px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  text-shadow: 2px 2px #FF0000;
+  color: yellow;
+}
+
+
+
+
+#panel {
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 25px;
+  height: 500px;
+  width: 1800px;
+}
+
+#panel #heading {
+  color: #FFB000;
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+#panel img {
+  margin: 0 60px 0 60px;
+  height: 400px;
+  width: 400px;
+}
+
+#gameOutput {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 auto;
+  overflow: scroll;
+  background-color: #3C393C;
+  color: #33FF33;
+  height: 250px;
+  width: 1200px;
+}
+
+#gameOutput p:nth-child(1) {
+  text-align: center;
+  font-size: 25px;
+  color: #FFB000;
+  text-decoration: underline;
+  line-height: 40px;
+}
+
+#gameOutput p {
+  text-align: left;
+  font-size: 20px;
+  line-height: 32px;
+}
+
+#mapImage {
+  display: inline-block;
+  padding: 10px;
+  background-color:#33FF33;
+  transition: transform .2s;
+  height: 250px;
+  width: 200px;
+  margin-bottom:90px;
+  margin-right: 50px;
+  border-radius: 10%;
+}
+
+#mapImage:hover{
+  transform: scale(2); 
+}
+
+#no-display-1 {
+  display: none;
+}
+#no-display-2 {
+  display: none;
+}
+#game-over {
+  position: fixed;
+  margin: -100px 100px 0px 100px;
+  text-align: center;
+  z-index: 5;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 100px;
+  color: #33FF33;
+  background-color: black;
+  padding: 700px;
+}
+#outcome {
+  position: fixed;
+  margin: 850px 0px 0px 1010px;
+  z-index: 6;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 50px;
+  color: #33FF33;
+
+  background-color: black;
+}
+
+}
+
+alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
