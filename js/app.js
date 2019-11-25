@@ -650,6 +650,12 @@ var infoContainer = document.getElementById('player-data');
 infoContainer.insertBefore(playerInfo, infoContainer.firstChild);
 // Player healthbar
 function drawHealthBar(canvas, x, y, width, height, health, max) {
+  if (health >= max) {
+    health = max;
+  }
+  if (health <= 0) {
+    health = 0;
+  }
 
   canvas.fillStyle = '#000000';
   canvas.fillRect(x, y, width, height);
