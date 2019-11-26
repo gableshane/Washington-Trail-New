@@ -23,8 +23,6 @@ function clickHandler(event) {
   }
 }
 
-choicePanel.addEventListener('click', clickHandler);
-
 
 // USERNAME
 //
@@ -37,9 +35,7 @@ function getName() {
 }
 // Get user name from local storage and set player name
 var localStorageUserName = localStorage.getItem("userName");
-
-//var player = JSON.parse(localStorageUserName); COMMENTED OUT FOR TESTIJNG
-
+var player = new Player(JSON.parse(localStorageUserName));
 // Starting player attributes should be determined by level, default levels set in player constructor function.
 var startingMoney;
 var startingTime;
@@ -55,10 +51,10 @@ var centerImg = document.getElementById('centerImg');
 var rightImg = document.getElementById('rightImg');
 var textBox = document.getElementById('gameOutput');
 var mapImage = document.getElementById('mapImage');
-
 var choicePanel = document.getElementById('panel');
 var gameOverMsg = document.getElementById('no-display-1');
 var gameOverResult = document.getElementById('no-display-2');
+var showMoney = document.getElementById('show-me-the-money');
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 
@@ -155,6 +151,7 @@ Player.prototype.changeMoney = function (delta) {
   if(player.money <= 0) {
     gameOver('You ran out of money.');
   }
+  displayMoney();
 };
 Player.prototype.changeTime = function (delta) {
   this.time += delta;
@@ -468,6 +465,11 @@ function gameOver(outcome) {
 
 }
 
+// DISPLAYS THE MONEY
+function displayMoney() {
+  showMoney.textContent = player.money.toFixed(2);
+}
+
 changeLevel(home, takeBus, takeCar, snooze);
 var playerInfo = document.createElement('span');
 playerInfo.textContent = player.name + ' health ';
@@ -499,5 +501,6 @@ function drawHealthBar(canvas, x, y, width, height, health, max) {
 var healthBar = document.getElementById('healthbar').getContext('2d');
 drawHealthBar(healthBar, 10, 10, 200, 30, player.health, 100);
 changeLevel(home, takeBus, takeCar, snooze);
+displayMoney();
 
 
