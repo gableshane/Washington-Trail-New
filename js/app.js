@@ -310,7 +310,7 @@ var takeBusFedWay = function() {
        player.changeHealth(-10);
        player.changeMoney(-10);
     }
-    changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+    changeLevel(seaTac,takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
    };
 //Train Option
 var takeTrainFedWay = function() {
@@ -329,7 +329,7 @@ var takeTrainFedWay = function() {
     player.changeHealth(-10);
     player.changeMoney(-30);
    }
-   changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+   changeLevel(seaTac, takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
   };
 //Moped with stranger option 
 var rideMoped = function() {
@@ -348,7 +348,7 @@ var rideMoped = function() {
     player.changeHealth(-50);
     player.changeMoney(-15);
   }
-   changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+   changeLevel(seaTac, takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
   };
 // *************************************End of Federal Way Logic
 
