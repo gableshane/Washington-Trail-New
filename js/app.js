@@ -47,8 +47,11 @@ var won = 'You won!';
 var lost = 'You lost!';
 var heading = document.getElementById('heading');
 var leftImg = document.getElementById('leftImg');
+var leftImgText = document.getElementById('transportation1');
 var centerImg = document.getElementById('centerImg');
+var centerImgText = document.getElementById('transportation2')
 var rightImg = document.getElementById('rightImg');
+var rightImgText = document.getElementById('transportation3')
 var textBox = document.getElementById('gameOutput');
 var mapImage = document.getElementById('mapImage');
 var choicePanel = document.getElementById('panel');
@@ -60,25 +63,34 @@ choicePanel.addEventListener('click', clickHandler);
 
 var home = [
   'Home',
-
+   
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Car.jpg',
   'assets/Level Images/Snooze.jpeg',
-  'assets/Maps/Start.png'
+  'assets/Maps/Start.png',
+  'Take The Bus For $5',
+  'Take The Car for $4.50',
+  'Snooze For Extra Health'
 ];
 var tacoma = [
   'Tacoma',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
   'assets/Level Images/Stranger.jpg',
-  'assets/Maps/location1.png'
+  'assets/Maps/location1.png',
+  'Take The Bus For $5',
+  'Take The Train for $15',
+  'Ride With Stranger for $15'
 ];
 var federalWay = [
   'Federal Way',
   'assets/Level Images/Moped.jpg',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
-  'assets/Maps/location2.png'
+  'assets/Maps/location2.png',
+  'Strangers moped for $15',
+  'Take The Bus for $5',
+  'Take The Train for $15'
 ];
 
 var seaTac = [
@@ -86,7 +98,10 @@ var seaTac = [
   'assets/Level Images/carpool.jpg',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
-  'assets/Maps/location3.png'
+  'assets/Maps/location3.png',
+  'Take The Carpool for $20',
+  'Take The Bus for $5',
+  'Take The Train for $15'
 ];
 var seattle = [
   'Seattle',
@@ -224,9 +239,11 @@ var takeCar = function () {
   if (roll >= 17) {
     displayText('You drive your car to Tacoma and make great time! It took only 10 minutes');
     player.changeTime(-10);
+    player.changeMoney(-5);
   } else if (roll >= 7) {
     displayText('You ride your car to Tacoma, but there was some traffic. Minus 20 minutes');
     player.changeTime(-20);
+    player.changeMoney(-5);
   } else {
     displayText('Your car wouldn\'t start. You had to take the bus to Tacoma. Minus 45 minutes and 5$');
     player.changeTime(-45);
@@ -445,6 +462,10 @@ function changeLevel(city, funcOne, funcTwo, funcThree) {
     centerImg.setAttribute('src', city[2]);
     rightImg.setAttribute('src', city[3]);
     mapImage.setAttribute('src', city[4]);
+    leftImgText.textContent = city[5];
+    centerImgText.textContent = city[6];
+    rightImgText.textContent = city[7];
+
     leftFunction = funcOne;
     centerFunction = funcTwo;
     rightFunction = funcThree;

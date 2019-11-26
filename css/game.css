@@ -127,6 +127,7 @@ hr {
   color: #33FF33;
   height: 250px;
   width: 1200px;
+  margin-top: 50px;
 }
 
 #gameOutput p:nth-child(1) {
@@ -153,6 +154,7 @@ hr {
   margin-bottom:90px;
   margin-right: 50px;
   border-radius: 10%;
+  margin-top:50px;
 }
 
 #mapImage:hover{
@@ -187,13 +189,7 @@ hr {
   background-color: black;
 }
 
-}
 
-alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-}
 #player-data p {
   position: relative;
   margin-right: 40px;
@@ -202,4 +198,15 @@ alert {
 #show-me-the-money {
   position: relative;
   left: 80px;
+}
+#transportation1, #transportation2, #transportation3{
+position: absolute;
+margin-left: 60px;
+margin-top:420px;
+color: #FFB000;
+font-size: 20px;
+}
+
+.images {
+  display:inline-block
 }
