@@ -320,7 +320,7 @@ var takeTrainFedWay = function() {
     player.changeTime(-5);
     player.changeMoney(-15);
   } else if (roll >= 5) {
-    displayText('The train is a little behind, but not much.  -0 minutes, -$15');
+    displayText('The train is a little behind, but not much. -$15');
     player.changeTime(-10);
     player.changeMoney(-15);
   } else {
@@ -368,7 +368,6 @@ var takeBusSeaTac = function () {
     displayText('Bus stop is closed');
     player.changeTime(-25);
     player.changeHealth(-15);
-    player.changeMoney(-0);
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
@@ -387,7 +386,6 @@ var takeTrainSeaTac = function () {
     displayText('Emergency on train, stalls departure')
     player.changeTime(-22);
     player.changeHealth(-15);
-    player.changeMoney(-0);
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
@@ -406,7 +404,6 @@ var CarpoolSeaTac = function () {
     displayText('Accidents on the road, delay your arrival time')
     player.changeTime(-30);
     player.changeHealth(-9);
-    player.changeMoney(-0);
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
