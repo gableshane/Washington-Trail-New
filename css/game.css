@@ -187,8 +187,6 @@ hr {
   background-color: black;
 }
 
-}
-
 alert {
   padding: 20px;
   background-color: #f44336;
@@ -202,4 +200,7 @@ alert {
 #show-me-the-money {
   position: relative;
   left: 80px;
+}
+#body {
+  display: none;
 }

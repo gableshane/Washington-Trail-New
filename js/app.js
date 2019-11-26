@@ -336,12 +336,7 @@ var rideMoped = function() {
   };
 // *************************************End of Federal Way Logic
 
-<<<<<<< HEAD
-//**************************************SeaTac (level03) ***************************************
-
-=======
 //**************************************SeaTac (level03)
->>>>>>> 206a0c1489040d78a8342efd3d3ed001f48cec82
 //Bus Option//
 var takeBusSeaTac = function () {
   var roll = rollD20();
@@ -399,18 +394,8 @@ var CarpoolSeaTac = function () {
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
-<<<<<<< HEAD
-
-
 // *************************************End of SeaTac*****************************
 
-
-
-=======
-// *************************************End of Federal Way Logic
-
-//////////////// CHANGE LEVEL FUNCTION
->>>>>>> 206a0c1489040d78a8342efd3d3ed001f48cec82
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
