@@ -336,12 +336,8 @@ var rideMoped = function() {
   };
 // *************************************End of Federal Way Logic
 
-<<<<<<< HEAD
-//**************************************SeaTac (level03) ***************************************
 
-=======
-//**************************************SeaTac (level03)
->>>>>>> 206a0c1489040d78a8342efd3d3ed001f48cec82
+//**************************************SeaTac (level03) ***************************************
 //Bus Option//
 var takeBusSeaTac = function () {
   var roll = rollD20();
@@ -359,7 +355,7 @@ var takeBusSeaTac = function () {
     player.changeHealth(-15);
     player.changeMoney(-0);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
 };
 //Train Option//
 var takeTrainSeaTac = function () {
@@ -378,7 +374,7 @@ var takeTrainSeaTac = function () {
     player.changeHealth(-15);
     player.changeMoney(-0);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
 };
 //Carpool
 var CarpoolSeaTac = function () {
@@ -397,20 +393,11 @@ var CarpoolSeaTac = function () {
     player.changeHealth(-9);
     player.changeMoney(-0);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
 };
-<<<<<<< HEAD
-
-
 // *************************************End of SeaTac*****************************
 
 
-
-=======
-// *************************************End of Federal Way Logic
-
-//////////////// CHANGE LEVEL FUNCTION
->>>>>>> 206a0c1489040d78a8342efd3d3ed001f48cec82
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
@@ -436,7 +423,6 @@ function gameOver(outcome) {
   gameOverMsg.setAttribute('id', 'game-over');
   gameOverResult.setAttribute('id', 'outcome');
   gameOverResult.textContent = outcome;
-
 
 }
 // DISPLAYS THE MONEY
