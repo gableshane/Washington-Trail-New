@@ -95,12 +95,9 @@ hr {
   color: yellow;
 }
 
-
-
-
 #panel {
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-bottom: 25px;
   height: 500px;
   width: 1800px;
@@ -122,11 +119,12 @@ hr {
   display: inline-block;
   vertical-align: top;
   margin: 0 auto;
-  overflow: scroll;
+  overflow: auto;
   background-color: #3C393C;
   color: #33FF33;
   height: 250px;
   width: 1200px;
+  margin-top: 50px;
 }
 
 #gameOutput p:nth-child(1) {
@@ -153,6 +151,7 @@ hr {
   margin-bottom:90px;
   margin-right: 50px;
   border-radius: 10%;
+  margin-top:50px;
 }
 
 #mapImage:hover{
@@ -165,6 +164,7 @@ hr {
 #no-display-2 {
   display: none;
 }
+
 #game-over {
   position: fixed;
   margin: -100px 100px 0px 100px;
@@ -176,6 +176,7 @@ hr {
   background-color: black;
   padding: 700px;
 }
+
 #outcome {
   position: fixed;
   margin: 850px 0px 0px 1010px;
@@ -187,19 +188,34 @@ hr {
   background-color: black;
 }
 
-}
-
-alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-}
 #player-data p {
   position: relative;
   margin-right: 40px;
   margin-top: 10px;
 }
+
 #show-me-the-money {
   position: relative;
   left: 80px;
+}
+
+#transportation1, #transportation2, #transportation3{
+position: absolute;
+margin-left: 60px;
+margin-top:420px;
+color: #FFB000;
+font-size: 20px;
+}
+
+.images{
+  display: inline;
+}
+
+#showtime {
+  position: relative;
+  left: 70px;
+}
+#body {
+  display: none;
+
 }
