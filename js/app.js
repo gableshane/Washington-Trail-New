@@ -36,6 +36,7 @@ var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
 var healthBar = document.getElementById('healthbar').getContext('2d');
 var transition = document.getElementById('screenContent');
+var gameover = false;
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 var home = [
@@ -421,8 +422,11 @@ function displayText(text) {
 }
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver() {
-  choicePanel.removeEventListener('click', clickHandler);
-  displayText('-----GAME OVER-----');
+  if(!gameover) {
+    choicePanel.removeEventListener('click', clickHandler);
+    displayText('-----GAME OVER-----');
+    gameover = true;
+  }
 }
 // DISPLAYS THE MONEY
 function displayMoney() {
