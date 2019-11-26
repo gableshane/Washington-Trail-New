@@ -117,8 +117,8 @@ function getName() {
 // Player constructor function
 function Player(
   playerName = 'Player 1',
-  startingMoney = 45,
-  startingTime = 180,
+  startingMoney = 35,
+  startingTime = 90,
   startingHealth = 85,
 ) {
   this.name = playerName;
@@ -130,21 +130,24 @@ function Player(
 Player.prototype.changeMoney = function (delta) {
   this.money += delta;
   if(player.money <= 0) {
-    gameOver('You ran out of money.');
+    displayText('You ran out of money.');
+    gameOver(); 
   }
   displayMoney();
 };
 Player.prototype.changeTime = function (delta) {
   this.time += delta;
   if(player.time <= 0) {
-    gameOver('You ran out of time.');
+    displayText('You ran out of time.');
+    gameOver();
   }
   displayTime();
 };
 Player.prototype.changeHealth = function (delta) {
   this.health += delta;
   if(player.health <= 0) {
-    gameOver('You have died');
+    displayText('You have died');
+    gameOver();
   }
   drawHealthBar(healthBar, 10, 10, 200, 30, player.health, 100);
 };
@@ -348,7 +351,7 @@ var takeBusSeaTac = function () {
     player.changeHealth(-15);
   }
   changeLevel(seattle);
-  gameOver();
+  displayText('You made it to Seattle! Good job.');
 };
 //Train Option//
 var takeTrainSeaTac = function () {
@@ -367,7 +370,7 @@ var takeTrainSeaTac = function () {
     player.changeHealth(-15);
   }
   changeLevel(seattle);
-  gameOver();
+  displayText('You made it to Seattle! Good job.');
 };
 //Carpool
 var CarpoolSeaTac = function () {
@@ -386,13 +389,13 @@ var CarpoolSeaTac = function () {
     player.changeHealth(-9);
   }
   changeLevel(seattle);
-  gameOver();
+  displayText('You made it to Seattle! Good job.');
 };
 // *************************************End of SeaTac*****************************
 
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
-    gameOver(lost);
+    gameOver();
   } else {
     transition.setAttribute('id','body');
     setTimeout(function(){ transition.setAttribute('id', 'screenContent'); }, 300);
@@ -417,10 +420,9 @@ function displayText(text) {
   textBox.appendChild(alert);
 }
 // ENDS GAME AND DISPLAYS RESULT
-function gameOver(outcome) {
+function gameOver() {
   choicePanel.removeEventListener('click', clickHandler);
   displayText('-----GAME OVER-----');
-  displayText(outcome);
 }
 // DISPLAYS THE MONEY
 function displayMoney() {
