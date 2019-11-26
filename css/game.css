@@ -95,9 +95,6 @@ hr {
   color: yellow;
 }
 
-
-
-
 #panel {
   margin: 0 auto;
   margin-top: 100px;
@@ -122,7 +119,7 @@ hr {
   display: inline-block;
   vertical-align: top;
   margin: 0 auto;
-  overflow: scroll;
+  overflow: auto;
   background-color: #3C393C;
   color: #33FF33;
   height: 250px;
@@ -167,6 +164,7 @@ hr {
 #no-display-2 {
   display: none;
 }
+
 #game-over {
   position: fixed;
   margin: -100px 100px 0px 100px;
@@ -178,6 +176,7 @@ hr {
   background-color: black;
   padding: 700px;
 }
+
 #outcome {
   position: fixed;
   margin: 850px 0px 0px 1010px;
@@ -189,7 +188,6 @@ hr {
   background-color: black;
 }
 
-
 #player-data p {
   position: relative;
   margin-right: 40px;
@@ -199,6 +197,7 @@ hr {
   position: relative;
   left: 80px;
 }
+
 #transportation1, #transportation2, #transportation3{
 position: absolute;
 margin-left: 60px;
@@ -207,6 +206,11 @@ color: #FFB000;
 font-size: 20px;
 }
 
-.images {
-  display:inline-block
+#showtime {
+  position: relative;
+  left: 70px;
+}
+#body {
+  display: none;
+
 }
