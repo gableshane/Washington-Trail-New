@@ -36,6 +36,7 @@ var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
 var healthBar = document.getElementById('healthbar').getContext('2d');
 var transition = document.getElementById('screenContent');
+var gameover = false;
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 var home = [
@@ -119,7 +120,7 @@ function Player(
   playerName = 'Player 1',
   startingMoney = 35,
   startingTime = 90,
-  startingHealth = 85,
+  startingHealth = 50,
 ) {
   this.name = playerName;
   this.money = startingMoney;
@@ -161,11 +162,11 @@ function rollD20() {
 var snooze = function() {
   var roll = rollD20();
   if (roll >= 18) {
-    player.changeHealth(+15);
+    player.changeHealth(+20);
     player.changeTime(-15);
     displayText('You got an extra 15 minutes of sleep and feel amazing! Pick again.');
   } else if (roll >= 2) {
-    player.changeHealth(+15);
+    player.changeHealth(+20);
     player.changeTime(-15);
     displayText('You got some extra sleep! Feeling good plus 15 health. Pick again!');
   } else {
@@ -262,6 +263,7 @@ var rideWithStranger = function() {
  } else if (roll >= 5) {
    displayText('The stranger was very odd, but you still made it there ontime. The driver charged you $15. -10 Minutes');
    player.changeTime(-10);
+   player.changeHealth(-30);
    player.changeMoney(-15);
  } else {
    displayText('Big mistake.... Stranger got lost and took a long time to find Federal Way. You still were charged $15. -45 minutes, -50 health');
@@ -318,10 +320,12 @@ var rideMoped = function() {
   if (roll > 17) {
     displayText('The risk payed off the moped ended up weaving in and out of traffic to save you time, but they charged you $15. -5 minutes');
     player.changeTime(-5);
+    player.changeHealth(+20);
     player.changeMoney(-15);
   } else if (roll >= 5) {
     displayText('The moped ride was weird, but it made it in average time. The driver charged you $15. -10 mintues');
     player.changeTime(-10);
+    player.changeHealth(-20);
     player.changeMoney(-15);
   } else {
     displayText('The moped was a horrible idea, it almost immediately crashed into the stoplight. You still got charged $15. -45 minutes, -50 health');
@@ -421,8 +425,11 @@ function displayText(text) {
 }
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver() {
-  choicePanel.removeEventListener('click', clickHandler);
-  displayText('-----GAME OVER-----');
+  if(!gameover) {
+    choicePanel.removeEventListener('click', clickHandler);
+    displayText('-----GAME OVER-----');
+    gameover = true;
+  }
 }
 // DISPLAYS THE MONEY
 function displayMoney() {
