@@ -1,8 +1,4 @@
 'use strict';
-
-
-var choicePanel = document.getElementById("panel");
-
 function clickHandler(event) {
   // console.log('Clicked! ', event.target.id);
   switch (event.target.id) {
@@ -10,20 +6,18 @@ function clickHandler(event) {
       console.log("you clicked on left");
       leftFunction();
       break;
-    case 'centerImg':
-      console.log("you clicked on center");
-      centerFunction();
-      break;
-    case 'rightImg':
-      console.log('you clicked on right');
-      rightFunction();
-      break;
-    default:
-      console.log('blam', event.target.id);
-  }
-}
-
-
+      case 'centerImg':
+        console.log("you clicked on center");
+        centerFunction();
+        break;
+        case 'rightImg':
+          console.log('you clicked on right');
+          rightFunction();
+          break;
+          default:
+            console.log('blam', event.target.id);
+          }
+        }
 // USERNAME
 //
 // function gets name from index.html text field for user name
@@ -32,7 +26,7 @@ function getName() {
   var userName = userNameInputElement.value;
   var nameJSON = JSON.stringify(userName);
   localStorage.setItem("userName", nameJSON);
-}
+        }
 // Get user name from local storage and set player name
 var localStorageUserName = localStorage.getItem("userName");
 var player = new Player(JSON.parse(localStorageUserName));
@@ -45,6 +39,7 @@ var centerFunction;
 var rightFunction;
 var won = 'You won!';
 var lost = 'You lost!';
+var choicePanel = document.getElementById("panel");
 var heading = document.getElementById('heading');
 var leftImg = document.getElementById('leftImg');
 var centerImg = document.getElementById('centerImg');
@@ -56,9 +51,9 @@ var gameOverMsg = document.getElementById('no-display-1');
 var gameOverResult = document.getElementById('no-display-2');
 var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
+var healthBar = document.getElementById('healthbar').getContext('2d');
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
-
 var home = [
   'Home',
 
@@ -96,8 +91,6 @@ var seattle = [
   'https://via.placeholder.com/150',
   'assets/Maps/End.png'
 ];
-
-
 // CLICK HANDLER
 function clickHandler(event) {
   // console.log('Clicked! ', event.target.id);
@@ -118,8 +111,10 @@ function clickHandler(event) {
       console.log('blam', event.target.id);
   }
 }
-
 // USERNAME LOGIC
+// Get user name from local storage and set player name
+var localStorageUserName = localStorage.getItem('userName');
+var player = new Player(JSON.parse(localStorageUserName));
 // function gets name from index.html text field for user name
 function getName() {
   var userNameInputElement = document.getElementById('nameOfPlayer');
@@ -127,18 +122,12 @@ function getName() {
   var nameJSON = JSON.stringify(userName);
   localStorage.setItem('userName', nameJSON);
 }
-// Get user name from local storage and set player name
-var localStorageUserName = localStorage.getItem('userName');
-
-var player = new Player(JSON.parse(localStorageUserName));
-
 // Player constructor function
 function Player(
   playerName = 'Player 1',
   startingMoney = 45,
   startingTime = 180,
   startingHealth = 85,
-
 ) {
   this.name = playerName;
   this.money = startingMoney;
@@ -172,10 +161,7 @@ function rollD20() {
   var roll = Math.floor(Math.random() * 20 + 1);
   return roll;
 }
-
 // LIBRARY OF ACTIONS
-
-
 // *******************************Home functions for intial level START ***************************
 var snooze = function() {
   var roll = rollD20();
@@ -183,22 +169,16 @@ var snooze = function() {
     player.changeHealth(+15);
     player.changeTime(-15);
     displayText('You got an extra 15 minutes of sleep and feel amazing! Pick again.');
-    console.log(player.health);
   } else if (roll >= 2) {
     player.changeHealth(+15);
     player.changeTime(-15);
     displayText('You got some extra sleep! Feeling good plus 15 health. Pick again!');
   } else {
-    player.health = 0;
-    displayText(
-      'While reaching for the alarm you slipped out of bed and broke your neck. Game over.'
-    );
-    // endGame('lose');
+    displayText('While reaching for the alarm you slipped out of bed and broke your neck. Game over.');
+    player.changeHealth(-100);
   }
 };
-
 var takeBus = function () {
-
   var roll = rollD20();
   if (roll >= 17) {
     displayText('You caught the earlier bus and managed to take a quick nap! It took 15 minutes, you gained 5 health');
@@ -217,7 +197,6 @@ var takeBus = function () {
     player.changeMoney(-5);
     changeLevel(tacoma);
   }
- 
   changeLevel(tacoma, takeBusTacoma,takeTrainTacoma, rideWithStranger);
 };
 var takeCar = function () {
@@ -236,11 +215,6 @@ var takeCar = function () {
   changeLevel(tacoma, takeBusTacoma,takeTrainTacoma, rideWithStranger);
 };
 //*******************************Home functions for intial level END***********************
-
-
-
-
-
 
 // ********************************** Tacoma Logic Start*****************************
 //Bus Option
@@ -262,7 +236,6 @@ var takeBusTacoma = function() {
  }
  changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
 };
-
 //Train Option
 var takeTrainTacoma = function() {
  var roll = rollD20();
@@ -282,7 +255,6 @@ var takeTrainTacoma = function() {
 }
 changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
 };
-
 //Moped with stranger option 
 var rideWithStranger = function() {
  var roll = rollD20();
@@ -302,24 +274,21 @@ var rideWithStranger = function() {
 }
 changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
 };
-
 // *************************************End of Tacoma Logic
-
 
 // ********************************** FederalWay Logic Start*****************************
 
-
-  var takeBusFedWay = function() {
-     var roll = rollD20();
-     if (roll > 17) {
+var takeBusFedWay = function() {
+    var roll = rollD20();
+    if (roll > 17) {
        displayText('Bus ran through some stoplights and you made it there quick! -10 minutes, -$5');
        player.changeTime(-10);
        player.changeMoney(-5);
-     } else if (roll >= 7) {
+    } else if (roll >= 7) {
        displayText('Bus driver is newer and goes slow figuring out his route. -20 minutes, $5');
        player.changeTime(-20);
        player.changeMoney(-5);
-     } else {
+    } else {
        displayText('Bus tire is flat you had to wait for next one, big loss of time and frustraion. -45 minutes, -10 health, -$10');
        player.changeTime(-45);
        player.changeHealth(-10);
@@ -327,52 +296,47 @@ changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
     }
     changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
    };
-
-   //Train Option
-   var takeTrainFedWay = function() {
-    var roll = rollD20();
-    if (roll > 15) {
-      displayText('Train is running smoothly this morning, you practically flew to your next stop! -5 minutes, -$15');
-      player.changeTime(-5);
-      player.changeMoney(-15);
-    } else if (roll >= 5) {
-      displayText('The train is a little behind, but not much.  -0 minutes, -$15');
-      player.changeTime(-10);
-      player.changeMoney(-15);
-    } else {
-      displayText('The train breaks down, you have to wait for another one to arrive. You also get charged for two train tickets.  -45 minutes, -$30, -10 health');
-      player.changeTime(-45);
-      player.changeHealth(-10);
-      player.changeMoney(-30);
+//Train Option
+var takeTrainFedWay = function() {
+  var roll = rollD20();
+  if (roll > 15) {
+    displayText('Train is running smoothly this morning, you practically flew to your next stop! -5 minutes, -$15');
+    player.changeTime(-5);
+    player.changeMoney(-15);
+  } else if (roll >= 5) {
+    displayText('The train is a little behind, but not much.  -0 minutes, -$15');
+    player.changeTime(-10);
+    player.changeMoney(-15);
+  } else {
+    displayText('The train breaks down, you have to wait for another one to arrive. You also get charged for two train tickets.  -45 minutes, -$30, -10 health');
+    player.changeTime(-45);
+    player.changeHealth(-10);
+    player.changeMoney(-30);
    }
    changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
   };
-
-  //Moped with stranger option 
-  var rideMoped = function() {
-    var roll = rollD20();
-    if (roll > 17) {
-      displayText('The risk payed off the moped ended up weaving in and out of traffic to save you time, but they charged you $15. -5 minutes');
-      player.changeTime(-5);
-      player.changeMoney(-15);
-    } else if (roll >= 5) {
-      displayText('The moped ride was weird, but it made it in average time. The driver charged you $15. -10 mintues');
-      player.changeTime(-10);
-      player.changeMoney(-15);
-    } else {
-      displayText('The moped was a horrible idea, it almost immediately crashed into the stoplight. You still got charged $15. -45 minutes, -50 health');
-      player.changeTime(-45);
-      player.changeHealth(-50);
-      player.changeMoney(-15);
-   }
+//Moped with stranger option 
+var rideMoped = function() {
+  var roll = rollD20();
+  if (roll > 17) {
+    displayText('The risk payed off the moped ended up weaving in and out of traffic to save you time, but they charged you $15. -5 minutes');
+    player.changeTime(-5);
+    player.changeMoney(-15);
+  } else if (roll >= 5) {
+    displayText('The moped ride was weird, but it made it in average time. The driver charged you $15. -10 mintues');
+    player.changeTime(-10);
+    player.changeMoney(-15);
+  } else {
+    displayText('The moped was a horrible idea, it almost immediately crashed into the stoplight. You still got charged $15. -45 minutes, -50 health');
+    player.changeTime(-45);
+    player.changeHealth(-50);
+    player.changeMoney(-15);
+  }
    changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
   };
-
-
 // *************************************End of Federal Way Logic
 
 //**************************************SeaTac (level03)
-
 //Bus Option//
 var takeBusSeaTac = function () {
   var roll = rollD20();
@@ -392,7 +356,6 @@ var takeBusSeaTac = function () {
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
-
 //Train Option//
 var takeTrainSeaTac = function () {
   var roll = rollD20();
@@ -412,7 +375,6 @@ var takeTrainSeaTac = function () {
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
-
 //Carpool
 var CarpoolSeaTac = function () {
   var roll = rollD20();
@@ -432,11 +394,9 @@ var CarpoolSeaTac = function () {
   }
   changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
 };
-
-
 // *************************************End of Federal Way Logic
 
-////////////////--------------------------------------------------------
+//////////////// CHANGE LEVEL FUNCTION
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
@@ -457,7 +417,6 @@ function displayText(text) {
   alert.textContent = text;
   textBox.appendChild(alert);
 }
-
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver(outcome) {
   gameOverMsg.setAttribute('id', 'game-over');
@@ -466,18 +425,15 @@ function gameOver(outcome) {
 
 
 }
-
 // DISPLAYS THE MONEY
 function displayMoney() {
   showMoney.textContent = player.money.toFixed(2);
 }
-
 // DISPLAYS THE TIME
 function displayTime() {
   showTime.textContent = player.time;
 }
 
-changeLevel(home, takeBus, takeCar, snooze);
 var playerInfo = document.createElement('span');
 playerInfo.textContent = player.name + ' health ';
 var infoContainer = document.getElementById('player-data');
@@ -505,7 +461,7 @@ function drawHealthBar(canvas, x, y, width, height, health, max) {
   }
   canvas.fillRect(x+1,y+1,(health/max)*(width-2),height-2);
 }
-var healthBar = document.getElementById('healthbar').getContext('2d');
+
 drawHealthBar(healthBar, 10, 10, 200, 30, player.health, 100);
 changeLevel(home, takeBus, takeCar, snooze);
 displayMoney();
