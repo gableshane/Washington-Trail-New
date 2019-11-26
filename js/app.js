@@ -440,6 +440,7 @@ function displayText(text) {
 }
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver(outcome) {
+  choicePanel.removeEventListener('click', clickHandler);
   displayText('-----GAME OVER-----');
   displayText(outcome);
 }
