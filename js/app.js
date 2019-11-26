@@ -47,8 +47,6 @@ var rightImg = document.getElementById('rightImg');
 var textBox = document.getElementById('gameOutput');
 var mapImage = document.getElementById('mapImage');
 var choicePanel = document.getElementById('panel');
-var gameOverMsg = document.getElementById('no-display-1');
-var gameOverResult = document.getElementById('no-display-2');
 var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
 var healthBar = document.getElementById('healthbar').getContext('2d');
@@ -433,11 +431,8 @@ function displayText(text) {
 }
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver(outcome) {
-  gameOverMsg.setAttribute('id', 'game-over');
-  gameOverResult.setAttribute('id', 'outcome');
-  gameOverResult.textContent = outcome;
-
-
+  displayText('-----GAME OVER-----');
+  displayText(outcome);
 }
 // DISPLAYS THE MONEY
 function displayMoney() {
