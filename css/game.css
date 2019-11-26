@@ -122,7 +122,7 @@ hr {
   display: inline-block;
   vertical-align: top;
   margin: 0 auto;
-  overflow: scroll;
+  overflow: auto;
   background-color: #3C393C;
   color: #33FF33;
   height: 250px;
@@ -159,39 +159,12 @@ hr {
   transform: scale(2); 
 }
 
-#no-display-1 {
-  display: none;
-}
-#no-display-2 {
-  display: none;
-}
-#game-over {
-  position: fixed;
-  margin: -100px 100px 0px 100px;
-  text-align: center;
-  z-index: 5;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 100px;
-  color: #33FF33;
-  background-color: black;
-  padding: 700px;
-}
-#outcome {
-  position: fixed;
-  margin: 850px 0px 0px 1010px;
-  z-index: 6;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 50px;
-  color: #33FF33;
-
-  background-color: black;
-}
-
 alert {
   padding: 20px;
   background-color: #f44336;
   color: white;
 }
+
 #player-data p {
   position: relative;
   margin-right: 40px;
