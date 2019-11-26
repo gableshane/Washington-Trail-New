@@ -50,6 +50,7 @@ var choicePanel = document.getElementById('panel');
 var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
 var healthBar = document.getElementById('healthbar').getContext('2d');
+var transition = document.getElementById('screenContent');
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 var home = [
@@ -398,6 +399,8 @@ function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
   } else {
+    transition.setAttribute('id','body');
+    setTimeout(function(){ transition.setAttribute('id', 'screenContent'); }, 300);
     heading.textContent = city[0];
     leftImg.setAttribute('src', city[1]);
     centerImg.setAttribute('src', city[2]);
