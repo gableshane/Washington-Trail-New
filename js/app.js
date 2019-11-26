@@ -1,23 +1,5 @@
 'use strict';
-function clickHandler(event) {
-  // console.log('Clicked! ', event.target.id);
-  switch (event.target.id) {
-    case 'leftImg':
-      console.log("you clicked on left");
-      leftFunction();
-      break;
-      case 'centerImg':
-        console.log("you clicked on center");
-        centerFunction();
-        break;
-        case 'rightImg':
-          console.log('you clicked on right');
-          rightFunction();
-          break;
-          default:
-            console.log('blam', event.target.id);
-          }
-        }
+
 // USERNAME
 //
 // function gets name from index.html text field for user name
@@ -110,19 +92,15 @@ function clickHandler(event) {
   // console.log('Clicked! ', event.target.id);
   switch (event.target.id) {
     case 'leftImg':
-      console.log('you clicked on left');
       leftFunction();
       break;
     case 'centerImg':
-      console.log('you clicked on center');
       centerFunction();
       break;
     case 'rightImg':
-      console.log('you clicked on right');
       rightFunction();
       break;
     default:
-      console.log('blam', event.target.id);
   }
 }
 // USERNAME LOGIC
