@@ -55,6 +55,7 @@ var choicePanel = document.getElementById('panel');
 var gameOverMsg = document.getElementById('no-display-1');
 var gameOverResult = document.getElementById('no-display-2');
 var showMoney = document.getElementById('show-me-the-money');
+var showTime = document.getElementById('showtime');
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 
@@ -136,8 +137,7 @@ function Player(
   playerName = 'Player 1',
   startingMoney = 45,
   startingTime = 180,
-
-  startingHealth = 100,
+  startingHealth = 85,
 
 ) {
   this.name = playerName;
@@ -158,6 +158,7 @@ Player.prototype.changeTime = function (delta) {
   if(player.time <= 0) {
     gameOver('You ran out of time.');
   }
+  displayTime();
 };
 Player.prototype.changeHealth = function (delta) {
   this.health += delta;
@@ -471,6 +472,11 @@ function displayMoney() {
   showMoney.textContent = player.money.toFixed(2);
 }
 
+// DISPLAYS THE TIME
+function displayTime() {
+  showTime.textContent = player.time;
+}
+
 changeLevel(home, takeBus, takeCar, snooze);
 var playerInfo = document.createElement('span');
 playerInfo.textContent = player.name + ' health ';
@@ -503,5 +509,6 @@ var healthBar = document.getElementById('healthbar').getContext('2d');
 drawHealthBar(healthBar, 10, 10, 200, 30, player.health, 100);
 changeLevel(home, takeBus, takeCar, snooze);
 displayMoney();
+displayTime();
 
 
