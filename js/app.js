@@ -373,7 +373,7 @@ changeLevel(federalWay,rideMoped, takeBusFedWay, takeTrainFedWay);
 
 // *************************************End of Federal Way Logic
 
-//**************************************SeaTac (level03)
+//**************************************SeaTac (level03) ***************************************
 
 //Bus Option//
 var takeBusSeaTac = function () {
