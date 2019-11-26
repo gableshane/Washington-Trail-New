@@ -159,7 +159,11 @@ hr {
   transform: scale(2); 
 }
 
-
+alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
 
 #player-data p {
   position: relative;
@@ -169,4 +173,7 @@ hr {
 #show-me-the-money {
   position: relative;
   left: 80px;
+}
+#body {
+  display: none;
 }
