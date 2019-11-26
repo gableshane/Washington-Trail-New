@@ -1,0 +1,17 @@
+* {
+  background-color: black;
+  font-family: 'Press Start 2P', cursive;
+  color: #33FF33;
+}
+img {
+  position: relative;
+  
+  text-align: center;
+  font-size: 100px;
+}
+h1 {
+  text-align: center;
+}
+p {
+  text-align: center;
+}
