@@ -1,23 +1,5 @@
 'use strict';
-function clickHandler(event) {
-  // console.log('Clicked! ', event.target.id);
-  switch (event.target.id) {
-    case 'leftImg':
-      console.log("you clicked on left");
-      leftFunction();
-      break;
-      case 'centerImg':
-        console.log("you clicked on center");
-        centerFunction();
-        break;
-        case 'rightImg':
-          console.log('you clicked on right');
-          rightFunction();
-          break;
-          default:
-            console.log('blam', event.target.id);
-          }
-        }
+
 // USERNAME
 //
 // function gets name from index.html text field for user name
@@ -42,39 +24,50 @@ var lost = 'You lost!';
 var choicePanel = document.getElementById("panel");
 var heading = document.getElementById('heading');
 var leftImg = document.getElementById('leftImg');
+var leftImgText = document.getElementById('transportation1');
 var centerImg = document.getElementById('centerImg');
+var centerImgText = document.getElementById('transportation2')
 var rightImg = document.getElementById('rightImg');
+var rightImgText = document.getElementById('transportation3')
 var textBox = document.getElementById('gameOutput');
 var mapImage = document.getElementById('mapImage');
 var choicePanel = document.getElementById('panel');
-var gameOverMsg = document.getElementById('no-display-1');
-var gameOverResult = document.getElementById('no-display-2');
 var showMoney = document.getElementById('show-me-the-money');
 var showTime = document.getElementById('showtime');
 var healthBar = document.getElementById('healthbar').getContext('2d');
+var transition = document.getElementById('screenContent');
 choicePanel.addEventListener('click', clickHandler);
 // ARRAYS THAT HOLD THE LOCATION INFORMATION TO BE FED INTO LEVELCHANGE FUNCTION.
 var home = [
   'Home',
-
+   
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Car.jpg',
   'assets/Level Images/Snooze.jpeg',
-  'assets/Maps/Start.png'
+  'assets/Maps/Start.png',
+  'Take The Bus For $5',
+  'Take The Car for $4.50',
+  'Snooze For Extra Health'
 ];
 var tacoma = [
   'Tacoma',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
   'assets/Level Images/Stranger.jpg',
-  'assets/Maps/location1.png'
+  'assets/Maps/location1.png',
+  'Take The Bus For $5',
+  'Take The Train for $15',
+  'Ride With Stranger for $15'
 ];
 var federalWay = [
   'Federal Way',
   'assets/Level Images/Moped.jpg',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
-  'assets/Maps/location2.png'
+  'assets/Maps/location2.png',
+  'Strangers moped for $15',
+  'Take The Bus for $5',
+  'Take The Train for $15'
 ];
 
 var seaTac = [
@@ -82,7 +75,10 @@ var seaTac = [
   'assets/Level Images/carpool.jpg',
   'assets/Level Images/Bus.jpg',
   'assets/Level Images/Train.jpg',
-  'assets/Maps/location3.png'
+  'assets/Maps/location3.png',
+  'Take The Carpool for $20',
+  'Take The Bus for $5',
+  'Take The Train for $15'
 ];
 var seattle = [
   'Seattle',
@@ -96,19 +92,15 @@ function clickHandler(event) {
   // console.log('Clicked! ', event.target.id);
   switch (event.target.id) {
     case 'leftImg':
-      console.log('you clicked on left');
       leftFunction();
       break;
     case 'centerImg':
-      console.log('you clicked on center');
       centerFunction();
       break;
     case 'rightImg':
-      console.log('you clicked on right');
       rightFunction();
       break;
     default:
-      console.log('blam', event.target.id);
   }
 }
 // USERNAME LOGIC
@@ -204,9 +196,11 @@ var takeCar = function () {
   if (roll >= 17) {
     displayText('You drive your car to Tacoma and make great time! It took only 10 minutes');
     player.changeTime(-10);
+    player.changeMoney(-5);
   } else if (roll >= 7) {
     displayText('You ride your car to Tacoma, but there was some traffic. Minus 20 minutes');
     player.changeTime(-20);
+    player.changeMoney(-5);
   } else {
     displayText('Your car wouldn\'t start. You had to take the bus to Tacoma. Minus 45 minutes and $5');
     player.changeTime(-45);
@@ -294,7 +288,7 @@ var takeBusFedWay = function() {
        player.changeHealth(-10);
        player.changeMoney(-10);
     }
-    changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+    changeLevel(seaTac,takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
    };
 //Train Option
 var takeTrainFedWay = function() {
@@ -304,7 +298,7 @@ var takeTrainFedWay = function() {
     player.changeTime(-5);
     player.changeMoney(-15);
   } else if (roll >= 5) {
-    displayText('The train is a little behind, but not much.  -0 minutes, -$15');
+    displayText('The train is a little behind, but not much. -$15');
     player.changeTime(-10);
     player.changeMoney(-15);
   } else {
@@ -313,7 +307,7 @@ var takeTrainFedWay = function() {
     player.changeHealth(-10);
     player.changeMoney(-30);
    }
-   changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+   changeLevel(seaTac, takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
   };
 //Moped with stranger option 
 var rideMoped = function() {
@@ -332,7 +326,7 @@ var rideMoped = function() {
     player.changeHealth(-50);
     player.changeMoney(-15);
   }
-   changeLevel(seaTac,rideMoped, takeBusFedWay, takeTrainFedWay);
+   changeLevel(seaTac, takeBusSeaTac, takeTrainSeaTac, CarpoolSeaTac);
   };
 // *************************************End of Federal Way Logic
 
@@ -353,9 +347,9 @@ var takeBusSeaTac = function () {
     displayText('Bus stop is closed');
     player.changeTime(-25);
     player.changeHealth(-15);
-    player.changeMoney(-0);
   }
   changeLevel(seattle);
+  gameOver();
 };
 //Train Option//
 var takeTrainSeaTac = function () {
@@ -372,9 +366,9 @@ var takeTrainSeaTac = function () {
     displayText('Emergency on train, stalls departure')
     player.changeTime(-22);
     player.changeHealth(-15);
-    player.changeMoney(-0);
   }
   changeLevel(seattle);
+  gameOver();
 };
 //Carpool
 var CarpoolSeaTac = function () {
@@ -391,22 +385,27 @@ var CarpoolSeaTac = function () {
     displayText('Accidents on the road, delay your arrival time')
     player.changeTime(-30);
     player.changeHealth(-9);
-    player.changeMoney(-0);
   }
   changeLevel(seattle);
+  gameOver();
 };
 // *************************************End of SeaTac*****************************
-
 
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
     gameOver(lost);
   } else {
+    transition.setAttribute('id','body');
+    setTimeout(function(){ transition.setAttribute('id', 'screenContent'); }, 300);
     heading.textContent = city[0];
     leftImg.setAttribute('src', city[1]);
     centerImg.setAttribute('src', city[2]);
     rightImg.setAttribute('src', city[3]);
     mapImage.setAttribute('src', city[4]);
+    leftImgText.textContent = city[5];
+    centerImgText.textContent = city[6];
+    rightImgText.textContent = city[7];
+
     leftFunction = funcOne;
     centerFunction = funcTwo;
     rightFunction = funcThree;
@@ -420,10 +419,9 @@ function displayText(text) {
 }
 // ENDS GAME AND DISPLAYS RESULT
 function gameOver(outcome) {
-  gameOverMsg.setAttribute('id', 'game-over');
-  gameOverResult.setAttribute('id', 'outcome');
-  gameOverResult.textContent = outcome;
-
+  choicePanel.removeEventListener('click', clickHandler);
+  displayText('-----GAME OVER-----');
+  displayText(outcome);
 }
 // DISPLAYS THE MONEY
 function displayMoney() {
