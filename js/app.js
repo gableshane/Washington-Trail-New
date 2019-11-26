@@ -369,7 +369,8 @@ var takeBusSeaTac = function () {
     player.changeTime(-25);
     player.changeHealth(-15);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
+  gameOver();
 };
 //Train Option//
 var takeTrainSeaTac = function () {
@@ -387,7 +388,8 @@ var takeTrainSeaTac = function () {
     player.changeTime(-22);
     player.changeHealth(-15);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
+  gameOver();
 };
 //Carpool
 var CarpoolSeaTac = function () {
@@ -405,7 +407,8 @@ var CarpoolSeaTac = function () {
     player.changeTime(-30);
     player.changeHealth(-9);
   }
-  changeLevel(seattle,takeBusSeaTac,takeTrainSeaTac,CarpoolSeaTac);
+  changeLevel(seattle);
+  gameOver();
 };
 // *************************************End of SeaTac*****************************
 
