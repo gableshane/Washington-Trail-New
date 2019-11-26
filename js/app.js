@@ -90,9 +90,9 @@ var seaTac = [
 ];
 var seattle = [
   'Seattle',
+  'assets/Level Images/clapping.jpg',
   'assets/Level Images/seattle.jpg',
-  'https://via.placeholder.com/150',
-  'https://via.placeholder.com/150',
+  'assets/Level Images/clapping.jpg',
   'assets/Maps/End.png'
 ];
 
@@ -434,6 +434,8 @@ var CarpoolSeaTac = function () {
 
 
 // *************************************End of SeaTac*****************************
+
+
 
 function changeLevel(city, funcOne, funcTwo, funcThree) {
   if(player.health <= 0) {
